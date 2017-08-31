@@ -11,30 +11,33 @@
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
 #define F_CPU 4915200 // clock frequency in Hz
+#define BAUD 9600
 #include <util/delay.h>
 
 
-void UART_Init(unsigned int ubrr) {
+int UART_Init(unsigned int ubrr) {
 	// Set baud rate
 	UBRR0H = (unsigned char)(ubrr>>8);
 	UBRR0L = (unsigned char)ubrr;
 	// Enable receiver and transmitter
 	UCSR0B = (1<<RXEN0)|(1<<TXEN0);
 	// Set frame format: 8data, 2 stop bit
+	UCSR0A &= ~(_BV(U2X0));
+	return 1;
 }
 
 unsigned char UART_Recieve(void) {
-	while ( !(UCSR0A & (1<<RXC0))){}
+	while ( !(UCSR0A & (1<<RXC0)));
 	
 	return UDR0;
 	
 };
 
-void UART_Transmit(unsigned char data) {
+int UART_Transmit(unsigned char data) {
 	while (!(UCSR0A & (1<<UDRE0) )){}
 	
 	UDR0 = data;
-	
+	return 3;
 };
 
 int main(void)
@@ -51,12 +54,14 @@ int main(void)
 		
 			PORTA |= (1 << 1);
 
-		// ubrr = frekvens / 2*baud
-		UART_Init(256);
-		UART_Transmit('a');
-		//char post = UART_Recieve();
+		unsigned int ubrr = 31;
+		UART_Init(ubrr);
+		UART_Transmit('h');
+		UART_Transmit('\n');
 		
-        printf(UDR0);
+		unsigned char post = UART_Recieve();
+		fdevopen(UART_Transmit('a'), UART_Recieve());
+		printf(post);
     }
 	
 }
