@@ -14,6 +14,7 @@
 #define BAUD 9600
 #define UBRR F_CPU/16/BAUD-1
 #include <util/delay.h>
+#include "SRAM/SRAM.h"
 
 
 uint8_t RECEIVED = 0;
@@ -39,7 +40,8 @@ int main(void)
 	UART_Init(UBRR);
 	fdevopen(&UART_Transmit, &UART_Recieve);
 	printf("Hello world\n");
-	
+	init_SRAM();
+	SRAM_test();
     while(1)
     {
 		_delay_ms(500);
