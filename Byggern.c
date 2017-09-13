@@ -10,6 +10,7 @@
 #include "stdio.h"
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
+#include "ADC/ADC.h"
 #define F_CPU 4915200 // clock frequency in Hz
 #define BAUD 9600
 #define UBRR F_CPU/16/BAUD-1
@@ -41,18 +42,34 @@ int main(void)
 	fdevopen(&UART_Transmit, &UART_Recieve);
 	printf("Hello world\n");
 	init_SRAM();
+	
+	ADC_init();
+	
+	//volatile char *adc = (char *) 0x1800; // Start address for the SRAM
+	//while(1){
+		//adc[0] = 0x1800;
+	//}
+	
 	SRAM_test();
-    while(1)
+	
+	while(1) {
+		_delay_ms(1000);
+		printf("(%d,%d)\n", ADC_read(joyX),ADC_read(joyY));
+		//printf("(%d)\n", ADC_read(joyX));	
+	}
+
+    /*while(1)
     {
-		_delay_ms(500);
+		//_delay_ms(500);
 			//PORTA = 0xFF;
-			PORTA &= ~(1 << 1);
-		
+			//PORTA &= ~(1 << 1);
+			printf("hey man");
+			
 		_delay_ms(500);
 		
-			PORTA |= (1 << 1);
+			//PORTA |= (1 << 1);
 		
 		
     }
-	
+	*/
 }
