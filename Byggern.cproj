@@ -119,19 +119,19 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ADC\ADC.c">
+    <Compile Include="IO\ADC.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="ADC\ADC.h">
+    <Compile Include="IO\ADC.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="IO\JOY.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="IO\JOY.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Byggern.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Joystick\JOY.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Joystick\JOY.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SRAM\SRAM.h">
@@ -148,8 +148,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ADC" />
-    <Folder Include="Joystick" />
+    <Folder Include="IO" />
     <Folder Include="SRAM" />
     <Folder Include="UART" />
   </ItemGroup>

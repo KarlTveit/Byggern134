@@ -9,6 +9,11 @@
 #ifndef JOYSTICK_H_
 #define JOYSTICK_H_
 
+
+#include "ADC.h"
+#include <string.h>
+#include <util/delay.h>
+
 typedef struct{
 	int X;
 	int Y;
@@ -21,13 +26,16 @@ typedef enum{
 	right,
 	up,
 	down,
+	neutral
 }JOY_direction_t;	
+
 	
 void JOY_init();
 void JOY_calibrate();
 int JOY_button(int button);
 JOY_position_t JOY_getPosition();
 JOY_direction_t JOY_getDirection();
+void JOY_getDirectionString(void);
 
 
 

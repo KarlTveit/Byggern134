@@ -10,12 +10,14 @@
 #include "stdio.h"
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
-#include "ADC/ADC.h"
+#include "IO/ADC.h"
+#include "IO/JOY.h"
 #define F_CPU 4915200 // clock frequency in Hz
 #define BAUD 9600
 #define UBRR F_CPU/16/BAUD-1
 #include <util/delay.h>
 #include "SRAM/SRAM.h"
+
 
 
 uint8_t RECEIVED = 0;
@@ -43,7 +45,8 @@ int main(void)
 	printf("Hello world\n");
 	init_SRAM();
 	
-	ADC_init();
+	/*ADC_init();*/
+	JOY_init();
 	
 	//volatile char *adc = (char *) 0x1800; // Start address for the SRAM
 	//while(1){
@@ -53,8 +56,14 @@ int main(void)
 	SRAM_test();
 	
 	while(1) {
+		/*JOY_calibrate();*/	//DENNE KLIKKER HJELP HVA SKJER
 		_delay_ms(1000);
 		printf("(%d,%d)\n", ADC_read(joyX),ADC_read(joyY));
+		printf("(%d,%d)\n", JOY_getPosition().X,JOY_getPosition().Y);
+		
+		JOY_getDirectionString();
+		
+		
 		//printf("(%d)\n", ADC_read(joyX));	
 	}
 
