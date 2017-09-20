@@ -17,6 +17,7 @@
 #define UBRR F_CPU/16/BAUD-1
 #include <util/delay.h>
 #include "SRAM/SRAM.h"
+#include "OLED/OLED.h"
 
 
 
@@ -45,6 +46,11 @@ int main(void)
 	printf("Hello world\n");
 	init_SRAM();
 	
+	
+	OLED_init();
+	OLED_test();
+
+	while(1);
 	/*ADC_init();*/
 	JOY_init();
 	
@@ -53,17 +59,26 @@ int main(void)
 		//adc[0] = 0x1800;
 	//}
 	
-	SRAM_test();
+	//SRAM_test();
 	
+	/**ext_oled_cmd = 0xb0;
+	*ext_oled_cmd = 0x10;
+	*ext_oled_cmd = 0x00;
+	
+	for (int i = 0; i < 8; i++) {
+		*ext_oled_data = font8[51][i];
+	}
+	*/
 	while(1) {
 		/*JOY_calibrate();*/	//DENNE KLIKKER HJELP HVA SKJER
-		_delay_ms(1000);
+		/*_delay_ms(1000);
 		printf("(%d,%d)\n", ADC_read(joyX),ADC_read(joyY));
 		printf("(%d,%d)\n", JOY_getPosition().X,JOY_getPosition().Y);
 		
-		JOY_getDirectionString();
+		JOY_getDirectionString();*/
 		
 		
+		//OLED_test();
 		//printf("(%d)\n", ADC_read(joyX));	
 	}
 

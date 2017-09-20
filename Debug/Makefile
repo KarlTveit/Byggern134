@@ -33,13 +33,18 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
+../IO \
+../OLED \
 ../SRAM \
 ../UART
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../IO/ADC.c \
+../IO/JOY.c \
 ../Byggern.c \
+../OLED/OLED.c \
 ../SRAM/SRAM.c \
 ../UART/UART.c
 
@@ -51,22 +56,34 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+IO/ADC.o \
+IO/JOY.o \
 Byggern.o \
+OLED/OLED.o \
 SRAM/SRAM.o \
 UART/UART.o
 
 OBJS_AS_ARGS +=  \
+IO/ADC.o \
+IO/JOY.o \
 Byggern.o \
+OLED/OLED.o \
 SRAM/SRAM.o \
 UART/UART.o
 
 C_DEPS +=  \
+IO/ADC.d \
+IO/JOY.d \
 Byggern.d \
+OLED/OLED.d \
 SRAM/SRAM.d \
 UART/UART.d
 
 C_DEPS_AS_ARGS +=  \
+IO/ADC.d \
+IO/JOY.d \
 Byggern.d \
+OLED/OLED.d \
 SRAM/SRAM.d \
 UART/UART.d
 
@@ -91,7 +108,27 @@ LINKER_SCRIPT_DEP+=
 
 
 
+
+
+
+
+
+
+IO/%.o: ../IO/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 ./%.o: .././%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+OLED/%.o: ../OLED/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
