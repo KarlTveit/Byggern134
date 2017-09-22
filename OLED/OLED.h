@@ -15,7 +15,7 @@ void OLED_clear_display(void);
 void OLED_init(void);
 void OLED_reset(void);
 void OLED_home();
-void OLED_goto_line(line);
+void OLED_goto_line(uint8_t line);
 void OLED_clear_line(line);
 void OLED_pos(row, column);
 void OLED_print(char*);

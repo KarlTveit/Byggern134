@@ -48,7 +48,7 @@ int main(void)
 	
 	
 	OLED_init();
-	OLED_test();
+	OLED_clear_display();
 
 	while(1);
 	/*ADC_init();*/
