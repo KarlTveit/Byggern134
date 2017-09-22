@@ -4,6 +4,7 @@
 #include "fonts.h"
 
 
+
 /*
 void OLED_clear_display() {
 	*ext_oled_cmd = 0xb0;
@@ -16,7 +17,7 @@ void OLED_init ()
 {
 	volatile char *addresse = ext_oled_cmd;
 	
-	*addresse = 0xae;        //  display  off *(adresse+0xae)
+	*addresse = DISPLAY_OFF;        //  display  off *(adresse+0xae)
 	*addresse = 0xa1;        //segment  remap
 	//*addresse = 00b;		 // Horizontal addressing??????
 	*addresse = 0xda;        //common  pads  hardware:  alternative
@@ -48,12 +49,11 @@ void OLED_init ()
 	*addresse = 0x00;*/
 }
 
+//workin fiiiine
 void OLED_clear_display(void){
-	
- 	_delay_ms(500);
 	 
 	 uint8_t c = 0xb0;
-	while(1){
+	for(uint8_t p = 0; p<8;p++) {
  		*ext_oled_cmd = c++;
  		*ext_oled_cmd = 0x10;
 		*ext_oled_cmd = 0x00;
@@ -66,37 +66,48 @@ void OLED_clear_display(void){
 		}
 	}
 
-}
+}		
 
 void OLED_reset(void){}
 // void OLED_home(){}
 	
 	
 void OLED_goto_line(uint8_t line){
-	//uint8_t n = line;
-	/*if (n<0 || n>7) {
-		printf("Out of bounds");
-		return;
-	}*/
 	
-	*ext_oled_cmd = line;
+	*ext_oled_cmd = 0xb0 + line;
 	*ext_oled_cmd = 0x10;
 	*ext_oled_cmd = 0x00;
+	printf("line: %d\n",0xb0 + line); 
 }
 
-/*
 void OLED_goto_column(uint8_t column){
-	uint8_t n = column;
-	if (0<0 || n>) {
-		printf("Out of bounds");
-		return;
+	
+	*ext_oled_cmd = 0x10+((column & 0xf0)>>4);
+	*ext_oled_cmd = column & 0x0f;
+	printf("column: %d\n",column); 
+}
+
+//workin fiiiine
+void OLED_clear_line(line) {
+	OLED_goto_line(line);
+	for (uint8_t i = 0; i<128; i++) {
+		*ext_oled_data = 0x00;
+		_delay_ms(10);
 	}
-	*ext_oled_cmd = 0x1n;
-	*ext_oled_cmd = 0x0n;
+}
 
-}*/
+void OLED_pos(uint8_t row, uint8_t column){
+	OLED_goto_line(row);
+	//OLED_goto_column(column);
+}
 
-// void OLED_clear_line(line){}
-// void OLED_pos(row, column){}
-// void OLED_print(char*){}
+void OLED_print(char c){
+	for (int i = 0; i < 8; i++) {
+		*ext_oled_data = pgm_read_byte(&(font8[c - ASCII_OFFSET][i]));
+	}
+
+}
+
+//void OLED_get_char(uint8_t
+
 // void OLED_set_brightness(lvl){}

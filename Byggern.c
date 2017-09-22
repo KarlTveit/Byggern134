@@ -18,7 +18,7 @@
 #include <util/delay.h>
 #include "SRAM/SRAM.h"
 #include "OLED/OLED.h"
-
+//#include "OLED/fonts.h"
 
 
 uint8_t RECEIVED = 0;
@@ -49,26 +49,23 @@ int main(void)
 	
 	OLED_init();
 	OLED_clear_display();
-
-	while(1);
-	/*ADC_init();*/
-	JOY_init();
-	
-	//volatile char *adc = (char *) 0x1800; // Start address for the SRAM
-	//while(1){
-		//adc[0] = 0x1800;
-	//}
-	
-	//SRAM_test();
-	
 	/**ext_oled_cmd = 0xb0;
 	*ext_oled_cmd = 0x10;
-	*ext_oled_cmd = 0x00;
+	*ext_oled_cmd = 0x00;*/
 	
-	for (int i = 0; i < 8; i++) {
-		*ext_oled_data = font8[51][i];
-	}
-	*/
+	OLED_goto_line(3);
+	OLED_goto_column(64);
+	
+		OLED_print('c');
+		/*for (int i = 0; i < 8; i++) {
+			*ext_oled_data = font8[52][i];
+		}*/
+
+	
+	
+	
+
+
 	while(1) {
 		/*JOY_calibrate();*/	//DENNE KLIKKER HJELP HVA SKJER
 		/*_delay_ms(1000);
@@ -82,18 +79,5 @@ int main(void)
 		//printf("(%d)\n", ADC_read(joyX));	
 	}
 
-    /*while(1)
-    {
-		//_delay_ms(500);
-			//PORTA = 0xFF;
-			//PORTA &= ~(1 << 1);
-			printf("hey man");
-			
-		_delay_ms(500);
-		
-			//PORTA |= (1 << 1);
-		
-		
-    }
-	*/
+ 
 }
