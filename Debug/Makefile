@@ -44,6 +44,7 @@ C_SRCS +=  \
 ../IO/ADC.c \
 ../IO/JOY.c \
 ../Byggern.c \
+../OLED/MENU.c \
 ../OLED/OLED.c \
 ../SRAM/SRAM.c \
 ../UART/UART.c
@@ -59,6 +60,7 @@ OBJS +=  \
 IO/ADC.o \
 IO/JOY.o \
 Byggern.o \
+OLED/MENU.o \
 OLED/OLED.o \
 SRAM/SRAM.o \
 UART/UART.o
@@ -67,6 +69,7 @@ OBJS_AS_ARGS +=  \
 IO/ADC.o \
 IO/JOY.o \
 Byggern.o \
+OLED/MENU.o \
 OLED/OLED.o \
 SRAM/SRAM.o \
 UART/UART.o
@@ -75,6 +78,7 @@ C_DEPS +=  \
 IO/ADC.d \
 IO/JOY.d \
 Byggern.d \
+OLED/MENU.d \
 OLED/OLED.d \
 SRAM/SRAM.d \
 UART/UART.d
@@ -83,6 +87,7 @@ C_DEPS_AS_ARGS +=  \
 IO/ADC.d \
 IO/JOY.d \
 Byggern.d \
+OLED/MENU.d \
 OLED/OLED.d \
 SRAM/SRAM.d \
 UART/UART.d
@@ -101,6 +106,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

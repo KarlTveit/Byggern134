@@ -137,6 +137,12 @@
     <Compile Include="OLED\fonts.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="OLED\MENU.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="OLED\MENU.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="OLED\OLED.c">
       <SubType>compile</SubType>
     </Compile>

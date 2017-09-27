@@ -8,6 +8,8 @@ IO\JOY.c
 
 Byggern.c
 
+OLED\MENU.c
+
 OLED\OLED.c
 
 SRAM\SRAM.c

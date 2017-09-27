@@ -20,7 +20,8 @@ void OLED_goto_line(uint8_t line);
 void OLED_goto_column(uint8_t column);
 void OLED_clear_line(line);
 void OLED_pos(uint8_t row,uint8_t column);
-void OLED_print(char c);
+void OLED_print_char(char c);
 void OLED_set_brightness(lvl);
+void OLED_print_string(char c[]);
 
 #endif /* OLED_H_ */

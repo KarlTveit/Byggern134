@@ -53,21 +53,20 @@ int main(void)
 	*ext_oled_cmd = 0x10;
 	*ext_oled_cmd = 0x00;*/
 	
-	OLED_goto_line(3);
-	OLED_goto_column(64);
+	OLED_goto_line(0);
+	OLED_goto_column(0);
 	
-		OLED_print('c');
+		//OLED_print('c');
 		/*for (int i = 0; i < 8; i++) {
 			*ext_oled_data = font8[52][i];
 		}*/
-
+	char c[] = "heyooooo waddap homeboiiiiiiiiiiiiiiiiiii, im coming for you motherfucker my name be JAMIE!!!";
 	
-	
-	
-
+	OLED_print_string(c);
+	JOY_init();
 
 	while(1) {
-		/*JOY_calibrate();*/	//DENNE KLIKKER HJELP HVA SKJER
+		//JOY_calibrate();	//DENNE KLIKKER HJELP HVA SKJER
 		/*_delay_ms(1000);
 		printf("(%d,%d)\n", ADC_read(joyX),ADC_read(joyY));
 		printf("(%d,%d)\n", JOY_getPosition().X,JOY_getPosition().Y);
