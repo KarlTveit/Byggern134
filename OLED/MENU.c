@@ -21,14 +21,19 @@ void MENU_create_menu() {
 }
 
 
-void MENU_display_menu(menu_t menu) {
+void MENU_display_menu(menu_t menu, uint8_t curr_line ) {
 	uint8_t line = 0;
 	OLED_clear_display();
 	OLED_print_string(menu.title);
 	OLED_goto_line(++line);
 
 	for (uint8_t i = 0; i < menu.number_of_submenus; i++) {
-		OLED_print_string(menu.submenus[i]->title);
+		if (line == curr_line) {
+			OLED_print_inverted_string(menu.submenus[i]->title);
+		}
+		else {
+			OLED_print_string(menu.submenus[i]->title);
+		}
 		OLED_goto_line(++line);
 	}
 	
@@ -59,17 +64,34 @@ void MENU_add_submenu(char* t, void(*func)(), uint8_t num, /*menu_t** sub,*/ men
 	
 	
 
-	
-	/*
-	uint8_t submenu_index = parent->number_of_submenus;
-	
-	new_submenu->parent->submenus = (menu_t**) realloc(new_submenu->parent->submenus, )
-	
-	parent->= malloc(parent->number_of_submenus + 1);
-	
-	parent->submenus[submenu_index] = newmenu;*/
-
 }
 
 
 
+
+void MENU_choose(menu_t choice) {
+	
+	if (choice.item == NULL_PTR) {
+		MENU_display_menu(choice,0);
+	}
+	else {
+		choice.item();
+	}
+	
+}
+
+
+void MENU_back(menu_t this) {
+	
+	if (this.parent != NULL_PTR) {
+		MENU_display_menu(*this.parent,0);
+	}
+	else {
+		OLED_clear_display();
+		OLED_goto_line(4);
+		OLED_goto_column(25);
+		OLED_print_string("Are you sure you want to quit?");
+	}
+	
+	
+}

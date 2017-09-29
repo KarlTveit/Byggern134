@@ -25,8 +25,7 @@ struct menu_t{
 typedef struct menu_t menu_t;
 
 
-
-void MENU_display_menu();
+void MENU_display_menu(menu_t menu, uint8_t curr_line );
 
 void MENU_create_menu();
 
@@ -35,9 +34,10 @@ void MENU_create_menu();
 
 void MENU_add_submenu(char* t, void(*func)(), uint8_t num, /*menu_t** sub,*/ menu_t* p);
 
-/*
-void MENU_back();
-void MENU_choose();*/
+
+void MENU_back(menu_t this);
+
+void MENU_choose(menu_t choice);
 
 
 #endif /* MENU_H_ */

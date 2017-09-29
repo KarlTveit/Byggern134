@@ -53,6 +53,8 @@ int main(void)
 	OLED_goto_line(0);
 	OLED_goto_column(0);
 	
+	
+	
 		
 	static menu_t main_menu;
 	
@@ -70,7 +72,7 @@ int main(void)
 	printf("first submenu is %s\n", main_menu.submenus[0]->title);
 	
 	//_delay_ms(500);
-	MENU_display_menu(main_menu);
+	MENU_display_menu(main_menu,1);
 	
 	JOY_init();
 
