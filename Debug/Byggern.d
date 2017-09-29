@@ -23,7 +23,7 @@ Byggern.d Byggern.o: .././Byggern.c .././UART/UART.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\string.h \
  .././SRAM/SRAM.h .././OLED/OLED.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
- .././OLED/OLED_COMMANDS.h
+ .././OLED/OLED_COMMANDS.h .././OLED/MENU.h
 
 .././UART/UART.h:
 
@@ -80,3 +80,5 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\pgmspace.h:
 
 .././OLED/OLED_COMMANDS.h:
+
+.././OLED/MENU.h:

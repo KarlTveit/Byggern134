@@ -10,24 +10,32 @@
 #define MENU_H_
 
 #define MAX_SUBMENUS 6
+#define NULL_PTR (void*)0
 
-typedef struct{
-	char title[20];
+#include "stdint.h"
+
+struct menu_t{
+	char* title;
 	void (*item)();
 	uint8_t number_of_submenus;
-	menu_t* submenus[5];
-	menu_t* parent;
-} menu_t; 
+	struct menu_t** submenus;
+	struct menu_t* parent;
+}; 
 
+typedef struct menu_t menu_t;
 
 
 
 void MENU_display_menu();
 
+void MENU_create_menu();
+
+
+
+
+void MENU_add_submenu(char* t, void(*func)(), uint8_t num, /*menu_t** sub,*/ menu_t* p);
+
 /*
-
-void MENU_add_submenu(uint8_t elements, char title, menu_t* parent);
-
 void MENU_back();
 void MENU_choose();*/
 

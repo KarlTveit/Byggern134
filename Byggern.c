@@ -18,6 +18,7 @@
 #include <util/delay.h>
 #include "SRAM/SRAM.h"
 #include "OLED/OLED.h"
+#include "OLED/MENU.h"
 //#include "OLED/fonts.h"
 
 
@@ -40,7 +41,7 @@ int main(void)
 {
 
 	DDRA = 0xFF;
-	//unsigned long ubrr = (F_CPU/(16*BAUD))-1;//31;
+
 	UART_Init(UBRR);
 	fdevopen(&UART_Transmit, &UART_Recieve);
 	printf("Hello world\n");
@@ -49,20 +50,28 @@ int main(void)
 	
 	OLED_init();
 	OLED_clear_display();
-	/**ext_oled_cmd = 0xb0;
-	*ext_oled_cmd = 0x10;
-	*ext_oled_cmd = 0x00;*/
-	
 	OLED_goto_line(0);
 	OLED_goto_column(0);
 	
-		//OLED_print('c');
-		/*for (int i = 0; i < 8; i++) {
-			*ext_oled_data = font8[52][i];
-		}*/
-	char c[] = "heyooooo waddap homeboiiiiiiiiiiiiiiiiiii, im coming for you motherfucker my name be JAMIE!!!";
+		
+	static menu_t main_menu;
 	
-	OLED_print_string(c);
+	main_menu.title = "Main Menu";
+	main_menu.number_of_submenus = 0;
+	main_menu.item = NULL_PTR;
+	main_menu.parent = NULL_PTR;
+	main_menu.submenus = malloc(sizeof(menu_t)*5);
+	
+	//MENU_display_menu(main_menu);
+	
+	
+	
+	MENU_add_submenu("Settings", NULL_PTR, 3, &main_menu);
+	printf("first submenu is %s\n", main_menu.submenus[0]->title);
+	
+	//_delay_ms(500);
+	MENU_display_menu(main_menu);
+	
 	JOY_init();
 
 	while(1) {
