@@ -20,10 +20,18 @@ void OLED_goto_line(uint8_t line);
 void OLED_goto_column(uint8_t column);
 void OLED_clear_line(line);
 void OLED_pos(uint8_t row/*,uint8_t column*/);
+
+
 void OLED_print_char(char c);
 void OLED_print_inverted_char(char c);
+void OLED_print_emphasized_inverted_char(char c);
+
+
 void OLED_set_brightness(lvl);
+
 void OLED_print_string(char c[]);
 void OLED_print_inverted_string(char c[]);
+void OLED_emphasized_inverted_string(char c[]);
+
 
 #endif /* OLED_H_ */

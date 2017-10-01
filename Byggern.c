@@ -55,27 +55,122 @@ int main(void)
 	
 	
 	
-		
-	static menu_t main_menu;
 	
+	/*
+	***********************
+			M E N U 
+			
+	************************
+	*/
+	
+	
+	static menu_t main_menu;
+	static menu_t current_menu;
+	
+	//Initializing Main Menu
 	main_menu.title = "Main Menu";
 	main_menu.number_of_submenus = 0;
 	main_menu.item = NULL_PTR;
 	main_menu.parent = NULL_PTR;
 	main_menu.submenus = malloc(sizeof(menu_t)*5);
 	
-	//MENU_display_menu(main_menu);
+	current_menu = main_menu;
+	static uint8_t current_line = 0; // første linje er linjen under tittel
 	
 	
 	
+		
 	MENU_add_submenu("Settings", NULL_PTR, 3, &main_menu);
-	printf("first submenu is %s\n", main_menu.submenus[0]->title);
+	MENU_add_submenu("Tonja", NULL_PTR, 3, &main_menu);
+	MENU_add_submenu("Karl", NULL_PTR, 3, &main_menu);
 	
-	//_delay_ms(500);
+	menu_t* tonja_m = main_menu.submenus[1];
+	menu_t* karl_m = main_menu.submenus[2];
+	
+	MENU_add_submenu("LILLA GENSER", NULL_PTR, 3, tonja_m);
+	MENU_add_submenu("KUL", NULL_PTR, 3, karl_m);
+	printf("first submenu is %s\n", main_menu.submenus[0]->title);
+		
+		
 	MENU_display_menu(main_menu,1);
 	
-	JOY_init();
+	
+	
+	
+	while(1) {
+		
+		JOY_direction_t dir = JOY_getDirection();
+		printf("dir: ");
+		JOY_getDirectionString();
+		printf("\n");
+		menu_t choice = *current_menu.submenus[current_line];		
+		
+		switch (dir) {	
+			
+			case up:
+				if (current_line > 0) {
+					current_line--;
+					MENU_display_menu(current_menu, current_line);
+				}
+				
+				_delay_ms(100);
+				break;
+				
+			case down:
+				if (current_line < (current_menu.number_of_submenus-1)) {
+					current_line++;
+					MENU_display_menu(current_menu, current_line);
+				}
+			
+				_delay_ms(100);
+				break;
+			
+			case right:
+				
+				MENU_choose(choice);
+				current_menu = choice;
+				current_line = 0;
+				MENU_display_menu(current_menu, current_line);
+				
+				_delay_ms(100);
+				break;
+				
+			case left:	
+			
+				MENU_back(current_menu);
+				if (current_menu.parent != NULL_PTR) {
+					current_menu = *current_menu.parent;
+				}
+				
+				current_line = 0;
+				
+				_delay_ms(100);
+				break;
+		}
+		
+		
+		
+		
+	}
+	
+		
+	
+	
+	
+	
+	
 
+
+	
+
+
+
+
+
+
+
+
+	JOY_init();
 	while(1) {
 		//JOY_calibrate();	//DENNE KLIKKER HJELP HVA SKJER
 		/*_delay_ms(1000);

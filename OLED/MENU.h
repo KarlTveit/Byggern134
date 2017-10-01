@@ -14,6 +14,8 @@
 
 #include "stdint.h"
 
+
+
 struct menu_t{
 	char* title;
 	void (*item)();
@@ -27,7 +29,8 @@ typedef struct menu_t menu_t;
 
 void MENU_display_menu(menu_t menu, uint8_t curr_line );
 
-void MENU_create_menu();
+
+MENU_create_main_menu(void);
 
 
 

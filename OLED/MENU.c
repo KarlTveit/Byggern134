@@ -5,20 +5,21 @@
 
 
 
- //static menu_t main_menu; /*= {.title = "Main Menu", .parent = NULL_PTR, .number_of_submenus = 5, ->item() = NULL_PTR, .submenu = malloc(main_menu.number_of_submenus)} ;*/
 
 
 
-void MENU_create_menu() {
-	/*static menu_t main_menu;
+
+
+
+
+
+
+MENU_create_main_menu(void) {
 	
-	main_menu.title = "Main Menu";
-	main_menu.number_of_submenus = 5;
-	main_menu.item = NULL_PTR;
-	main_menu.parent = NULL_PTR;
-	main_menu.submenus = malloc(main_menu.number_of_submenus);
-	*/
+	
+	
 }
+
 
 
 void MENU_display_menu(menu_t menu, uint8_t curr_line ) {
@@ -68,8 +69,10 @@ void MENU_add_submenu(char* t, void(*func)(), uint8_t num, /*menu_t** sub,*/ men
 
 
 
-
 void MENU_choose(menu_t choice) {
+	
+	/*OLED_emphasized_inverted_string(choice.title);*/
+	_delay_ms(1000);
 	
 	if (choice.item == NULL_PTR) {
 		MENU_display_menu(choice,0);
@@ -90,7 +93,7 @@ void MENU_back(menu_t this) {
 		OLED_clear_display();
 		OLED_goto_line(4);
 		OLED_goto_column(25);
-		OLED_print_string("Are you sure you want to quit?");
+		OLED_print_string("Q U I T");
 	}
 	
 	
