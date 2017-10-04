@@ -119,54 +119,79 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="IO\ADC.c">
+    <Compile Include="lib\ADC\ADC.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="IO\ADC.h">
+    <Compile Include="lib\ADC\ADC.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="IO\JOY.c">
+    <Compile Include="lib\CAN\CAN.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="IO\JOY.h">
+    <Compile Include="lib\CAN\CAN.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Byggern.c">
+    <Compile Include="lib\JOY\JOY.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="OLED\fonts.h">
+    <Compile Include="lib\JOY\JOY.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="OLED\MENU.c">
+    <Compile Include="lib\MCP2515\MCP2515.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="OLED\MENU.h">
+    <Compile Include="lib\MCP2515\MCP2515.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="OLED\OLED.c">
+    <Compile Include="lib\MENU\MENU.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="OLED\OLED.h">
+    <Compile Include="lib\MENU\MENU.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="SRAM\SRAM.h">
+    <Compile Include="lib\OLED\fonts.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="SRAM\SRAM.c">
+    <Compile Include="lib\OLED\OLED.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="UART\UART.c">
+    <Compile Include="lib\OLED\OLED.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="UART\UART.h">
+    <Compile Include="lib\SPI\SPI.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\SPI\SPI.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\SRAM\SRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\SRAM\SRAM.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\UART\UART.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\UART\UART.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="source\main.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="IO" />
-    <Folder Include="OLED" />
-    <Folder Include="SRAM" />
-    <Folder Include="UART" />
+    <Folder Include="lib\ADC\" />
+    <Folder Include="lib\CAN\" />
+    <Folder Include="lib\JOY\" />
+    <Folder Include="lib\MCP2515\" />
+    <Folder Include="lib\MENU\" />
+    <Folder Include="lib\OLED\" />
+    <Folder Include="lib\SPI\" />
+    <Folder Include="lib\SRAM\" />
+    <Folder Include="lib\UART\" />
+    <Folder Include="lib" />
+    <Folder Include="source" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

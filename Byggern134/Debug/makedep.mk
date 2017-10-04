@@ -2,17 +2,23 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-IO\ADC.c
+lib\ADC\ADC.c
 
-IO\JOY.c
+lib\CAN\CAN.c
 
-Byggern.c
+lib\JOY\JOY.c
 
-OLED\MENU.c
+lib\MCP2515\MCP2515.c
 
-OLED\OLED.c
+lib\MENU\MENU.c
 
-SRAM\SRAM.c
+lib\OLED\OLED.c
 
-UART\UART.c
+lib\SPI\SPI.c
+
+lib\SRAM\SRAM.c
+
+lib\UART\UART.c
+
+source\main.c
 

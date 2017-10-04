@@ -33,21 +33,31 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
-../IO \
-../OLED \
-../SRAM \
-../UART
+../lib/ADC/ \
+../lib/CAN/ \
+../lib/JOY/ \
+../lib/MCP2515/ \
+../lib/MENU/ \
+../lib/OLED/ \
+../lib/SPI/ \
+../lib/SRAM/ \
+../lib/UART/ \
+../lib \
+../source
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../IO/ADC.c \
-../IO/JOY.c \
-../Byggern.c \
-../OLED/MENU.c \
-../OLED/OLED.c \
-../SRAM/SRAM.c \
-../UART/UART.c
+../lib/ADC/ADC.c \
+../lib/CAN/CAN.c \
+../lib/JOY/JOY.c \
+../lib/MCP2515/MCP2515.c \
+../lib/MENU/MENU.c \
+../lib/OLED/OLED.c \
+../lib/SPI/SPI.c \
+../lib/SRAM/SRAM.c \
+../lib/UART/UART.c \
+../source/main.c
 
 
 PREPROCESSING_SRCS += 
@@ -57,40 +67,52 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-IO/ADC.o \
-IO/JOY.o \
-Byggern.o \
-OLED/MENU.o \
-OLED/OLED.o \
-SRAM/SRAM.o \
-UART/UART.o
+lib/ADC/ADC.o \
+lib/CAN/CAN.o \
+lib/JOY/JOY.o \
+lib/MCP2515/MCP2515.o \
+lib/MENU/MENU.o \
+lib/OLED/OLED.o \
+lib/SPI/SPI.o \
+lib/SRAM/SRAM.o \
+lib/UART/UART.o \
+source/main.o
 
 OBJS_AS_ARGS +=  \
-IO/ADC.o \
-IO/JOY.o \
-Byggern.o \
-OLED/MENU.o \
-OLED/OLED.o \
-SRAM/SRAM.o \
-UART/UART.o
+lib/ADC/ADC.o \
+lib/CAN/CAN.o \
+lib/JOY/JOY.o \
+lib/MCP2515/MCP2515.o \
+lib/MENU/MENU.o \
+lib/OLED/OLED.o \
+lib/SPI/SPI.o \
+lib/SRAM/SRAM.o \
+lib/UART/UART.o \
+source/main.o
 
 C_DEPS +=  \
-IO/ADC.d \
-IO/JOY.d \
-Byggern.d \
-OLED/MENU.d \
-OLED/OLED.d \
-SRAM/SRAM.d \
-UART/UART.d
+lib/ADC/ADC.d \
+lib/CAN/CAN.d \
+lib/JOY/JOY.d \
+lib/MCP2515/MCP2515.d \
+lib/MENU/MENU.d \
+lib/OLED/OLED.d \
+lib/SPI/SPI.d \
+lib/SRAM/SRAM.d \
+lib/UART/UART.d \
+source/main.d
 
 C_DEPS_AS_ARGS +=  \
-IO/ADC.d \
-IO/JOY.d \
-Byggern.d \
-OLED/MENU.d \
-OLED/OLED.d \
-SRAM/SRAM.d \
-UART/UART.d
+lib/ADC/ADC.d \
+lib/CAN/CAN.d \
+lib/JOY/JOY.d \
+lib/MCP2515/MCP2515.d \
+lib/MENU/MENU.d \
+lib/OLED/OLED.d \
+lib/SPI/SPI.d \
+lib/SRAM/SRAM.d \
+lib/UART/UART.d \
+source/main.d
 
 OUTPUT_FILE_PATH +=Byggern.elf
 
@@ -121,35 +143,76 @@ LINKER_SCRIPT_DEP+=
 
 
 
-IO/%.o: ../IO/%.c
+
+
+
+
+
+
+lib/ADC/%.o: ../lib/ADC/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-./%.o: .././%.c
+lib/CAN/%.o: ../lib/CAN/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-OLED/%.o: ../OLED/%.c
+lib/JOY/%.o: ../lib/JOY/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-SRAM/%.o: ../SRAM/%.c
+lib/MCP2515/%.o: ../lib/MCP2515/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-UART/%.o: ../UART/%.c
+lib/MENU/%.o: ../lib/MENU/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+lib/OLED/%.o: ../lib/OLED/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+lib/SPI/%.o: ../lib/SPI/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+lib/SRAM/%.o: ../lib/SRAM/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+lib/UART/%.o: ../lib/UART/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+source/%.o: ../source/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
